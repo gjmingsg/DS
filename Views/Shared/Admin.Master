@@ -1,0 +1,95 @@
+﻿<%@ Master Language="C#" Inherits="System.Web.Mvc.ViewMasterPage" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head runat="server">
+	<title><asp:ContentPlaceHolder ID="TitleContent" runat="server" /></title>
+     <link href="../../Content/admin.css" rel="stylesheet" type="text/css" />
+    <script src="../../Scripts/jquery-1.4.1.min.js" type="text/javascript">
+    
+    </script>
+</head>
+<body>
+    <div>
+	    <div id="wrapper">
+	
+             <div id="header">
+		        <div id="top_info">
+		            <h1 class="fl"></h1>
+		            <div class="fr">
+			            <strong class="red" id="import_notice">登陆信息</strong>
+			            <span>欢迎你，<span>管理员登录</span>| 
+                            <%= Html.ActionLink("退出", "LogOff", "Account")%>
+                         </span>
+		            </div>
+		            <div class="clear"></div>
+		        </div><!--end: top_info -->
+
+		        <div id="menu">
+			        <div class="tabArea fullwidth">
+				        <ul class='tabList'>
+                            <li class="channel"><a href="#" class='current'>栏目管理</a></li>
+                            <li class="system"><a href="#" >系统管理</a></li>
+                        </ul>
+			        <div class="clear"></div>
+			        </div>
+			        <div id="menu_level2"> 
+			            <ul class='menu_level2_list channel'>
+                            <li><%= Html.ActionLink("公司新闻", "Index", "Article", new { TypeID = "9b647655-9c50-4222-b10f-0b7ae2186701" },null)%></li>
+                            <li><%= Html.ActionLink("公司视频", "Index", "Article", new { TypeID = "9b647655-9c50-4222-b10f-0b7ae2186702" }, null)%></li>
+                            <li><%= Html.ActionLink("产品中心", "Index", "Article", new { TypeID = "9b647655-9c50-4222-b10f-0b7ae2186703" }, null)%></li>
+                            <li><%= Html.ActionLink("招商加盟", "Edit", "Article", new { TypeID = "9b647655-9c50-4222-b10f-0b7ae2186704",ArticleID="c0815bc2-d461-4f73-93ea-4d6a5c6d94d5" }, null)%></li>
+                            <li><%= Html.ActionLink("美酒文化", "Edit", "Article", new { TypeID = "9b647655-9c50-4222-b10f-0b7ae2186705" ,ArticleID="39be8736-cbc0-4894-b75f-687e4c48a94d"}, null)%></li>
+                            <li><%= Html.ActionLink("联系我们", "Index", "Contact")%></li>
+                            <li><%= Html.ActionLink("公司简介", "Edit", "Article", new { TypeID = "9b647655-9c50-4222-b10f-0b7ae2186706", ArticleID = "b421878f-fe03-4048-b8eb-01d3cc12b3fd" }, null)%></li>
+                        </ul>
+                        <ul class="hide system">
+                            <li><%= Html.ActionLink("账号管理", "Config", "Index")%></li>
+                            <li><%= Html.ActionLink("配置管理", "Index", "Config")%></li>
+                        </ul>
+			        </div>
+		        </div><!--end: menu -->
+	        </div><!--end: header -->
+
+	         <div id="container">
+                <div>
+		            <asp:ContentPlaceHolder ID="MainContent" runat="server">
+		
+		            </asp:ContentPlaceHolder> 
+                </div>
+	         </div><!--end: container -->
+
+	         <div id="footer">
+		        <div id="friendLink">
+		        </div><!--end: friendLink -->
+	        </div><!--end: footer -->
+    
+        </div><!--end: wrapper -->
+
+    </div>
+    <script type="text/javascript">
+        $(function () {
+            $('.tabList>li').each(function () {
+                $(this).click(function () {
+                    resetClass();
+                    $(this).find('a').addClass('current');
+                    var cls = $(this).attr('class');
+                    $('#menu_level2>ul').each(function () {
+                        var ulCls = $(this).attr('class');
+                        if (ulCls.indexOf(cls) >= 0)
+                            $(this).removeClass('hide').addClass('menu_level2_list');
+                        else
+                            $(this).addClass('hide').removeClass('menu_level2_list');
+                    });
+                });
+            });
+        });
+        function resetClass() {
+            $('.tabList>li').each(function () {
+                $(this).find('a').removeClass('current');
+            });
+        }
+    </script>
+</body>
+</html>
