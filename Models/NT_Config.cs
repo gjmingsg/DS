@@ -20,14 +20,18 @@ namespace Nepton.Models
             public string Name { get; set; }
 
             [StringLength(500, ErrorMessage = "配置不能超过500个字")]
+            [DisplayName("值1")]
             public string Value1 { get; set; }
 
             [StringLength(1000, ErrorMessage = "配置不能超过1000个字")]
+            [DisplayName("值2")]
             public string Value2 { get; set; }
 
             [StringLength(2000, ErrorMessage = "配置名称不能超过2000个字")]
+            [DisplayName("值3")]
             public string Value3 { get; set; }
 
+            [DisplayName("值4")]
             public string Value4 { get; set; }
         }
     }

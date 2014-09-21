@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using Nepton.Models;
 using MvcPaging;
+using System.Net.Mail;
 namespace Nepton.Controllers
 {
     [HandleError]
@@ -16,9 +17,9 @@ namespace Nepton.Controllers
         private readonly Guid NewsId = Guid.Parse("9B647655-9C50-4222-B10F-0B7AE2186701");
         private readonly Guid VideoId = Guid.Parse("9B647655-9C50-4222-B10F-0B7AE2186702");
         //红酒
-        private readonly Guid RedId = Guid.Parse("9B647655-9C50-4222-B10F-0B7AE2186707");
+        public readonly static Guid RedId = Guid.Parse("9B647655-9C50-4222-B10F-0B7AE2186708");
         //白兰地
-        private readonly Guid WhiteId = Guid.Parse("9B647655-9C50-4222-B10F-0B7AE2186708");
+        public readonly static Guid WhiteId = Guid.Parse("9B647655-9C50-4222-B10F-0B7AE2186707");
 
         private readonly IContactRepository contactdb = new ContactRepository();
         private readonly IConfigRepository configdb = new ConfigRepository();
@@ -101,13 +102,27 @@ namespace Nepton.Controllers
             NT_Contact item)
         {
             if (ModelState.IsValid) {
+              
                 contactdb.AddContact(item);
+                ///发邮件给邮箱
+                try {
+                    var sc = new SmtpClient("localhost");
+                    var email = configdb.FindAll().Where(p => p.Key == "Mail").First().Value1;
+                    sc.Send(item.Email, email, item.Msg, item.Msg);
+                }catch(Exception e){
+                    log.Error("添加留言出错", e);
+                }
+                return RedirectToAction("ContactMsg");
             }
              
             SetContactInfoView();
             return View();
         }
+        public ActionResult ContactMsg() {
 
+            ViewData["msg"] = "留言我们已经收到，谢谢你的留言！";
+            return View();
+        }
         public ActionResult Culture()
         {
             return View(articledb.GetArticleById(CultureArticleId));
@@ -123,9 +138,9 @@ namespace Nepton.Controllers
             return View(articledb.FindAll().Where(p => p.NT_ArticleType.TypeID == NewsId).OrderByDescending(p => p.CreateTime).ToPagedList(page.HasValue ? page.Value - 1 : 0, 10));
         }
 
-        public ActionResult Video()
+        public ActionResult Video(int? page)
         {
-            return View();
+            return View(articledb.FindAll().Where(p => p.NT_ArticleType.TypeID == VideoId).OrderByDescending(p => p.CreateTime).ToPagedList(page.HasValue ? page.Value - 1 : 0, 10));
         }
 
         private void SetContactInfoView() {

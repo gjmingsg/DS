@@ -23,7 +23,7 @@ namespace Nepton.Models
 
             [Required(ErrorMessage = "请填写电话")]
             [StringLength(30, ErrorMessage = "电话不能超过30个字")]
-            [RegularExpression(@"^(\d{3,4}-)?\d{6,8}$", ErrorMessage = "填写的电话号码不正确")]
+            //[RegularExpression(@"^(\d{3,4}-)?\d{6,8}$", ErrorMessage = "填写的电话号码不正确")]
             [DisplayName("电话")]
             public string Tel { get; set; }
 

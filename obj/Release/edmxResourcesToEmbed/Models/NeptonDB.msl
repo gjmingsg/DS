@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="NeptonDBModelStoreContainer" CdmEntityContainer="Entities">
+    <EntitySetMapping Name="NT_Article">
+      <EntityTypeMapping TypeName="NeptonDBModel.NT_Article">
+        <MappingFragment StoreEntitySet="NT_Article">
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="ArticleID" ColumnName="ArticleID" />
+          <ScalarProperty Name="Creator" ColumnName="Creator" />
+          <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+          <ScalarProperty Name="Content" ColumnName="Content" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NT_ArticleType">
+      <EntityTypeMapping TypeName="NeptonDBModel.NT_ArticleType">
+        <MappingFragment StoreEntitySet="NT_ArticleType">
+          <ScalarProperty Name="TypeID" ColumnName="TypeID" />
+          <ScalarProperty Name="TypeName" ColumnName="TypeName" />
+          <ScalarProperty Name="ParentID" ColumnName="ParentID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NT_Config">
+      <EntityTypeMapping TypeName="NeptonDBModel.NT_Config">
+        <MappingFragment StoreEntitySet="NT_Config">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ConfigID" ColumnName="ConfigID" />
+          <ScalarProperty Name="Key" ColumnName="Key" />
+          <ScalarProperty Name="Value1" ColumnName="Value1" />
+          <ScalarProperty Name="Value2" ColumnName="Value2" />
+          <ScalarProperty Name="Value3" ColumnName="Value3" />
+          <ScalarProperty Name="Value4" ColumnName="Value4" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NT_Contact">
+      <EntityTypeMapping TypeName="NeptonDBModel.NT_Contact">
+        <MappingFragment StoreEntitySet="NT_Contact">
+          <ScalarProperty Name="ContactID" ColumnName="ContactID" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Company" ColumnName="Company" />
+          <ScalarProperty Name="Tel" ColumnName="Tel" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Msg" ColumnName="Msg" />
+          <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="FK_NT_ARTIC_REFERENCE_NT_ARTIC" TypeName="NeptonDBModel.FK_NT_ARTIC_REFERENCE_NT_ARTIC" StoreEntitySet="NT_Article">
+      <EndProperty Name="NT_ArticleType">
+        <ScalarProperty Name="TypeID" ColumnName="TypeID" />
+      </EndProperty>
+      <EndProperty Name="NT_Article">
+        <ScalarProperty Name="ArticleID" ColumnName="ArticleID" />
+      </EndProperty>
+      <Condition ColumnName="TypeID" IsNull="false" />
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>

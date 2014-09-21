@@ -1,125 +1,20 @@
-2014-09-19 00:41:03,830 [10432] ERROR Nepton.Controllers.HomeController [44] - 首页index出现异常
-System.Data.EntityCommandExecutionException: 执行命令定义时出错。有关详细信息，请参阅内部异常。 ---> System.Data.SqlClient.SqlException: 第 1 行: '(' 附近有语法错误。
-在关键字 'AS' 附近有语法错误。
-   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection)
-   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection)
-   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning()
-   在 System.Data.SqlClient.TdsParser.Run(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj)
-   在 System.Data.SqlClient.SqlDataReader.ConsumeMetaData()
-   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
-   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
-   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async)
-   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, DbAsyncResult result)
-   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
-   在 System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
-   在 System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
-   在 System.Data.Common.DbCommand.ExecuteReader(CommandBehavior behavior)
-   在 System.Data.EntityClient.EntityCommandDefinition.ExecuteStoreCommands(EntityCommand entityCommand, CommandBehavior behavior)
+2014-09-20 09:15:41,963 [8460] ERROR Nepton.Controllers.ConfigController [120] - 编辑配置项出错
+System.NullReferenceException: 未将对象引用设置到对象的实例。
+   在 Nepton.Controllers.ConfigController.Edit(NT_Config item, String srcPage) 位置 E:\workspace\其他\web\涅普敦公司\Project\Nepton\Nepton\Controllers\ConfigController.cs:行号 110
+2014-09-21 17:33:27,711 [3792] ERROR Nepton.Controllers.HomeController [112] - 添加留言出错
+System.Net.Mail.SmtpException: 发送邮件失败。 ---> System.Net.WebException: 无法连接到远程服务器 ---> System.Net.Sockets.SocketException: 由于目标计算机积极拒绝，无法连接。 127.0.0.1:25
+   在 System.Net.Sockets.Socket.DoConnect(EndPoint endPointSnapshot, SocketAddress socketAddress)
+   在 System.Net.ServicePoint.ConnectSocketInternal(Boolean connectFailure, Socket s4, Socket s6, Socket& socket, IPAddress& address, ConnectSocketState state, IAsyncResult asyncResult, Int32 timeout, Exception& exception)
    --- 内部异常堆栈跟踪的结尾 ---
-   在 System.Data.EntityClient.EntityCommandDefinition.ExecuteStoreCommands(EntityCommand entityCommand, CommandBehavior behavior)
-   在 System.Data.Objects.Internal.ObjectQueryExecutionPlan.Execute[TResultType](ObjectContext context, ObjectParameterCollection parameterValues)
-   在 System.Data.Objects.ObjectQuery`1.GetResults(Nullable`1 forMergeOption)
-   在 System.Data.Objects.ObjectQuery`1.System.Collections.Generic.IEnumerable<T>.GetEnumerator()
-   在 System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
-   在 System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
-   在 Nepton.Controllers.HomeController.Index() 位置 E:\workspace\其他\web\涅普敦公司\Project\Nepton\Nepton\Controllers\HomeController.cs:行号 37
-2014-09-19 00:47:46,290 [3548] ERROR Nepton.Controllers.HomeController [44] - 首页index出现异常
-System.Data.EntityCommandExecutionException: 执行命令定义时出错。有关详细信息，请参阅内部异常。 ---> System.Data.SqlClient.SqlException: 第 1 行: '(' 附近有语法错误。
-在关键字 'AS' 附近有语法错误。
-   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection)
-   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection)
-   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning()
-   在 System.Data.SqlClient.TdsParser.Run(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj)
-   在 System.Data.SqlClient.SqlDataReader.ConsumeMetaData()
-   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
-   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
-   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async)
-   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, DbAsyncResult result)
-   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
-   在 System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
-   在 System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
-   在 System.Data.Common.DbCommand.ExecuteReader(CommandBehavior behavior)
-   在 System.Data.EntityClient.EntityCommandDefinition.ExecuteStoreCommands(EntityCommand entityCommand, CommandBehavior behavior)
+   在 System.Net.ServicePoint.GetConnection(PooledStream PooledStream, Object owner, Boolean async, IPAddress& address, Socket& abortSocket, Socket& abortSocket6, Int32 timeout)
+   在 System.Net.PooledStream.Activate(Object owningObject, Boolean async, Int32 timeout, GeneralAsyncDelegate asyncCallback)
+   在 System.Net.PooledStream.Activate(Object owningObject, GeneralAsyncDelegate asyncCallback)
+   在 System.Net.ConnectionPool.GetConnection(Object owningObject, GeneralAsyncDelegate asyncCallback, Int32 creationTimeout)
+   在 System.Net.Mail.SmtpConnection.GetConnection(ServicePoint servicePoint)
+   在 System.Net.Mail.SmtpTransport.GetConnection(ServicePoint servicePoint)
+   在 System.Net.Mail.SmtpClient.GetConnection()
+   在 System.Net.Mail.SmtpClient.Send(MailMessage message)
    --- 内部异常堆栈跟踪的结尾 ---
-   在 System.Data.EntityClient.EntityCommandDefinition.ExecuteStoreCommands(EntityCommand entityCommand, CommandBehavior behavior)
-   在 System.Data.Objects.Internal.ObjectQueryExecutionPlan.Execute[TResultType](ObjectContext context, ObjectParameterCollection parameterValues)
-   在 System.Data.Objects.ObjectQuery`1.GetResults(Nullable`1 forMergeOption)
-   在 System.Data.Objects.ObjectQuery`1.System.Collections.Generic.IEnumerable<T>.GetEnumerator()
-   在 System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
-   在 System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
-   在 Nepton.Controllers.HomeController.Index() 位置 E:\workspace\其他\web\涅普敦公司\Project\Nepton\Nepton\Controllers\HomeController.cs:行号 37
-2014-09-19 00:48:23,967 [9672] ERROR Nepton.Controllers.HomeController [44] - 首页index出现异常
-System.Data.EntityCommandExecutionException: 执行命令定义时出错。有关详细信息，请参阅内部异常。 ---> System.Data.SqlClient.SqlException: 第 1 行: '(' 附近有语法错误。
-在关键字 'AS' 附近有语法错误。
-   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection)
-   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection)
-   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning()
-   在 System.Data.SqlClient.TdsParser.Run(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj)
-   在 System.Data.SqlClient.SqlDataReader.ConsumeMetaData()
-   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
-   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
-   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async)
-   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, DbAsyncResult result)
-   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
-   在 System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
-   在 System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
-   在 System.Data.Common.DbCommand.ExecuteReader(CommandBehavior behavior)
-   在 System.Data.EntityClient.EntityCommandDefinition.ExecuteStoreCommands(EntityCommand entityCommand, CommandBehavior behavior)
-   --- 内部异常堆栈跟踪的结尾 ---
-   在 System.Data.EntityClient.EntityCommandDefinition.ExecuteStoreCommands(EntityCommand entityCommand, CommandBehavior behavior)
-   在 System.Data.Objects.Internal.ObjectQueryExecutionPlan.Execute[TResultType](ObjectContext context, ObjectParameterCollection parameterValues)
-   在 System.Data.Objects.ObjectQuery`1.GetResults(Nullable`1 forMergeOption)
-   在 System.Data.Objects.ObjectQuery`1.System.Collections.Generic.IEnumerable<T>.GetEnumerator()
-   在 System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
-   在 System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
-   在 Nepton.Controllers.HomeController.Index() 位置 E:\workspace\其他\web\涅普敦公司\Project\Nepton\Nepton\Controllers\HomeController.cs:行号 37
-2014-09-19 00:48:56,764 [8716] ERROR Nepton.Controllers.HomeController [44] - 首页index出现异常
-System.Data.EntityCommandExecutionException: 执行命令定义时出错。有关详细信息，请参阅内部异常。 ---> System.Data.SqlClient.SqlException: 第 1 行: '(' 附近有语法错误。
-在关键字 'AS' 附近有语法错误。
-   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection)
-   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection)
-   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning()
-   在 System.Data.SqlClient.TdsParser.Run(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj)
-   在 System.Data.SqlClient.SqlDataReader.ConsumeMetaData()
-   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
-   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
-   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async)
-   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, DbAsyncResult result)
-   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
-   在 System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
-   在 System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
-   在 System.Data.Common.DbCommand.ExecuteReader(CommandBehavior behavior)
-   在 System.Data.EntityClient.EntityCommandDefinition.ExecuteStoreCommands(EntityCommand entityCommand, CommandBehavior behavior)
-   --- 内部异常堆栈跟踪的结尾 ---
-   在 System.Data.EntityClient.EntityCommandDefinition.ExecuteStoreCommands(EntityCommand entityCommand, CommandBehavior behavior)
-   在 System.Data.Objects.Internal.ObjectQueryExecutionPlan.Execute[TResultType](ObjectContext context, ObjectParameterCollection parameterValues)
-   在 System.Data.Objects.ObjectQuery`1.GetResults(Nullable`1 forMergeOption)
-   在 System.Data.Objects.ObjectQuery`1.System.Collections.Generic.IEnumerable<T>.GetEnumerator()
-   在 System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
-   在 System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
-   在 Nepton.Controllers.HomeController.Index() 位置 E:\workspace\其他\web\涅普敦公司\Project\Nepton\Nepton\Controllers\HomeController.cs:行号 37
-2014-09-19 00:51:03,697 [3548] ERROR Nepton.Controllers.HomeController [44] - 首页index出现异常
-System.Data.EntityCommandExecutionException: 执行命令定义时出错。有关详细信息，请参阅内部异常。 ---> System.Data.SqlClient.SqlException: 第 1 行: '(' 附近有语法错误。
-在关键字 'AS' 附近有语法错误。
-   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection)
-   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection)
-   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning()
-   在 System.Data.SqlClient.TdsParser.Run(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj)
-   在 System.Data.SqlClient.SqlDataReader.ConsumeMetaData()
-   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
-   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
-   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async)
-   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, DbAsyncResult result)
-   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
-   在 System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
-   在 System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
-   在 System.Data.Common.DbCommand.ExecuteReader(CommandBehavior behavior)
-   在 System.Data.EntityClient.EntityCommandDefinition.ExecuteStoreCommands(EntityCommand entityCommand, CommandBehavior behavior)
-   --- 内部异常堆栈跟踪的结尾 ---
-   在 System.Data.EntityClient.EntityCommandDefinition.ExecuteStoreCommands(EntityCommand entityCommand, CommandBehavior behavior)
-   在 System.Data.Objects.Internal.ObjectQueryExecutionPlan.Execute[TResultType](ObjectContext context, ObjectParameterCollection parameterValues)
-   在 System.Data.Objects.ObjectQuery`1.GetResults(Nullable`1 forMergeOption)
-   在 System.Data.Objects.ObjectQuery`1.System.Collections.Generic.IEnumerable<T>.GetEnumerator()
-   在 System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
-   在 System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
-   在 Nepton.Controllers.HomeController.Index() 位置 E:\workspace\其他\web\涅普敦公司\Project\Nepton\Nepton\Controllers\HomeController.cs:行号 37
+   在 System.Net.Mail.SmtpClient.Send(MailMessage message)
+   在 System.Net.Mail.SmtpClient.Send(String from, String recipients, String subject, String body)
+   在 Nepton.Controllers.HomeController.Contact(NT_Contact item) 位置 E:\workspace\其他\web\涅普敦公司\Project\Nepton\Nepton\Controllers\HomeController.cs:行号 109

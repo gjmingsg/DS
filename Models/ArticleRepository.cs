@@ -15,7 +15,7 @@ namespace Nepton.Models
 
         public NT_Article GetArticleById(Guid Id)
         {
-            return db.NT_Article.Where(p => p.ArticleID == Id).FirstOrDefault();
+            return db.NT_Article.Include("NT_ArticleType").Where(p => p.ArticleID == Id).FirstOrDefault();
         }
 
         public void AddArticle(NT_Article item)

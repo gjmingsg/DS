@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="NeptonDBModel" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+  <EntityContainer Name="Entities">
+    <EntitySet Name="NT_Article" EntityType="NeptonDBModel.NT_Article" />
+    <EntitySet Name="NT_ArticleType" EntityType="NeptonDBModel.NT_ArticleType" />
+    <EntitySet Name="NT_Config" EntityType="NeptonDBModel.NT_Config" />
+    <EntitySet Name="NT_Contact" EntityType="NeptonDBModel.NT_Contact" />
+    <AssociationSet Name="FK_NT_ARTIC_REFERENCE_NT_ARTIC" Association="NeptonDBModel.FK_NT_ARTIC_REFERENCE_NT_ARTIC">
+      <End Role="NT_ArticleType" EntitySet="NT_ArticleType" />
+      <End Role="NT_Article" EntitySet="NT_Article" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="NT_Article">
+    <Key>
+      <PropertyRef Name="ArticleID" />
+    </Key>
+    <Property Name="Title" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="ArticleID" Type="Guid" Nullable="false" />
+    <Property Name="Creator" Type="String" MaxLength="30" Unicode="true" FixedLength="false" />
+    <Property Name="CreateTime" Type="DateTime" />
+    <Property Name="Content" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="Status" Type="Int32" />
+    <NavigationProperty Name="NT_ArticleType" Relationship="NeptonDBModel.FK_NT_ARTIC_REFERENCE_NT_ARTIC" FromRole="NT_Article" ToRole="NT_ArticleType" />
+  </EntityType>
+  <EntityType Name="NT_ArticleType">
+    <Key>
+      <PropertyRef Name="TypeID" />
+    </Key>
+    <Property Name="TypeID" Type="Guid" Nullable="false" />
+    <Property Name="TypeName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="ParentID" Type="Guid" />
+    <NavigationProperty Name="NT_Article" Relationship="NeptonDBModel.FK_NT_ARTIC_REFERENCE_NT_ARTIC" FromRole="NT_ArticleType" ToRole="NT_Article" />
+  </EntityType>
+  <EntityType Name="NT_Config">
+    <Key>
+      <PropertyRef Name="ConfigID" />
+    </Key>
+    <Property Name="ConfigID" Type="Guid" Nullable="false" />
+    <Property Name="Key" Type="String" MaxLength="15" Unicode="true" FixedLength="false" />
+    <Property Name="Value1" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+    <Property Name="Value2" Type="String" MaxLength="1000" Unicode="true" FixedLength="false" />
+    <Property Name="Value3" Type="String" MaxLength="2000" Unicode="true" FixedLength="false" />
+    <Property Name="Value4" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Type="String" Name="Name" MaxLength="30" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="NT_Contact">
+    <Key>
+      <PropertyRef Name="ContactID" />
+    </Key>
+    <Property Name="ContactID" Type="Guid" Nullable="false" />
+    <Property Name="UserName" Type="String" MaxLength="30" Unicode="true" FixedLength="false" />
+    <Property Name="Company" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Tel" Type="String" MaxLength="30" Unicode="true" FixedLength="false" />
+    <Property Name="Email" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Msg" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="CreateTime" Type="DateTime" />
+    <Property Name="Status" Type="String" MaxLength="2" Unicode="true" FixedLength="false" />
+  </EntityType>
+  <Association Name="FK_NT_ARTIC_REFERENCE_NT_ARTIC">
+    <End Role="NT_ArticleType" Type="NeptonDBModel.NT_ArticleType" Multiplicity="0..1" />
+    <End Role="NT_Article" Type="NeptonDBModel.NT_Article" Multiplicity="*" />
+  </Association>
+</Schema>
