@@ -1,4 +1,4 @@
-.bg{
+﻿.bg{
     width:100%;
     height:768px;
     filter:alpha(opacity=100 finishopacity=50 style=2 startx=0,starty=0,finishx=0,finishy=150) progid:DXImageTransform.Microsoft.gradient(startcolorstr='#3757fa',endcolorstr='#0c1436',gradientType=0);
@@ -8,12 +8,46 @@
      background: -moz-radial-gradient(top, #3757fa, #0c1436);
      background: -ms-radial-gradient(top, #3757fa, #0c1436);
      background: radial-gradient(top, #3757fa, #0c1436); 
+     font:normal 13px Verdana;
 }
-.m{width: 1183px;margin: 0 auto;}
+.m{width: 1203px;margin: 0 auto;}
 .header,.sub-header,.content{ width: 1183px; margin:0 auto;}
 .header{}
-.head-nav>ul>li{height: 39px}
+.head-nav{ position:absolute; top:0px; background-image:url("/images/top_line.jpg"); background-repeat:repeat-y; padding:10px 0px 10px 0px;}
+.head-nav>ul>li{height: 39px;float: left;}
 
+.head-nav ul .list{
+line-height:39px;
+text-align:center;
+font-weight:normal;
+z-index:40;
+width:112px;
+height:auto;
+color:#336601;
+cursor:hand;
+overflow:hidden;
+position:absolute;
+background-image:url("/images/menu_bg.jpg");
+background-repeat:repeat-y;
+display:none;
+border:1px solid gray;
+}
+.head-nav ul .list a
+{
+    padding:5px;
+    font: normal 14px Verdana;
+    font-weight:bold;
+    color:#510D0C
+    }
+.head-nav ul .list a:hover
+{
+    text-decoration:none;
+ color:#BF4B40   
+    }    
+.head-nav>ul>li>div>a{
+height:39px;
+font-size:medium;
+}
 .sub-header{}
 .content{width: 1000px;margin: 0 auto;}
 
@@ -27,15 +61,15 @@
 
 .menu .submenu .menu2{background-image: url("/images/menu2.png"); background-repeat: no-repeat; z-index: 9;}
 .menu .submenu .menu2 .pic1{ margin: 15px 15px 0px 15px;}
-.menu .submenu .menu2 .contact-txt{font:normal 12px Verdana; margin: 5px 10px; padding:10px 10px;}
-.menu .submenu .menu2 .contact-txt div{margin:6px;}
+.menu .submenu .menu2 .contact-txt{font:normal 12px Verdana; margin: 5px 5px; padding:12px 5px;}
+.menu .submenu .menu2 .contact-txt div{margin:5px;}
 
-.menu .friendlink{background-color: #2e3454;margin-right: 15px; height: 100px}
-.menu .friendlink div{margin: 15px 25px;}
-.menu .friendlink select{ width: 150px; margin-top: -10px; margin-bottom: 5px;}
-
+.menu .friendlink{background-color: #2e3454;margin-right: 15px; height: 200px}
+.menu .friendlink div{margin: 15px 25px; border-bottom:1px dotted gray}
+.menu .friendlink div a{ color:White;font-family: Arial, Helvetica, sans-serif;}
 .menu .logo{ height: 189px}
 .menu .menu-list{margin: 0px;padding: 0px}
+.menu .menu-list .menu-img{ width:220px}
 .menu .menu-list ul{margin: 0px;padding: 0px}
 .menu .menu-list ul li{margin: 0px;padding: 0px; height: 24px;}
 .menu .menu-title{  }
@@ -78,8 +112,7 @@
 .txt-box .editor-field textarea{border:1px solid silver; overflow:auto;}
 .contact-base{float:left;margin-left:30px}
 .contact-detail{float:left;margin-left:10px;}
-.head-nav{}
-.head-nav li{float: left;height: 129px;}
+
 
 .txt{font: normal 13px Verdana; margin:20px}
 .txt-foot{font: normal 12px Verdana; margin:20px; float:right;}
@@ -157,3 +190,5 @@
 .foot .foot-bg .companyaddress{margin: 20px;font:normal 12px Verdana;color: #7f7f7f;}
 
 .page_list{ text-align:center;}
+#ajax-txtbox{ height:500px; overflow:hidden; overflow-y:auto;}
+#ajax-txtbox img{ height:490px;}

@@ -60,7 +60,7 @@
 
     <% } %>
 
-    <script src="../../Scripts/common.js" type="text/javascript"></script>
+   
     <script src="../../Content/ueditor/ueditor.config.js" type="text/javascript"></script>
     <script src="../../Content/ueditor/ueditor.all.min.js" type="text/javascript"></script>
     <script type="text/javascript">

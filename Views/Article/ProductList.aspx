@@ -21,10 +21,10 @@ Inherits="System.Web.Mvc.ViewPage<MvcPaging.IPagedList<Nepton.Models.NT_Article>
              <th>
                 产地
             </th>
-            <th>
+         <%--   <th>
             内容
             </th>
-         
+         --%>
         </tr>
 
     <% foreach (var item in Model) { %>
@@ -46,10 +46,10 @@ Inherits="System.Web.Mvc.ViewPage<MvcPaging.IPagedList<Nepton.Models.NT_Article>
                 <%=item.NT_ArticleType.TypeName %>
             </td>
          
-            <td>
+          <%--  <td>
                 <%= Html.Encode(item.Content) %>
             </td>
-           <%-- <td>
+            <td>
                 <%= Html.Encode(item.Status) %>
             </td>--%>
         </tr>

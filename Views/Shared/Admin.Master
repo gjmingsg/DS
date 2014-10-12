@@ -6,9 +6,8 @@
 <head runat="server">
 	<title><asp:ContentPlaceHolder ID="TitleContent" runat="server" /></title>
      <link href="../../Content/admin.css" rel="stylesheet" type="text/css" />
-    <script src="../../Scripts/jquery-1.4.1.min.js" type="text/javascript">
-    
-    </script>
+    <script src="../../Scripts/jquery-1.4.1.min.js" type="text/javascript"></script>
+     <script src="../../Scripts/common.js" type="text/javascript"></script>
 </head>
 <body>
     <div>
@@ -36,13 +35,19 @@
 			        </div>
 			        <div id="menu_level2"> 
 			            <ul class='menu_level2_list channel'>
-                            <li><%= Html.ActionLink("公司新闻", "Index", "Article", new { TypeID = "9b647655-9c50-4222-b10f-0b7ae2186701" },null)%></li>
-                            <li><%= Html.ActionLink("公司视频", "Index", "Article", new { TypeID = "9b647655-9c50-4222-b10f-0b7ae2186702" }, null)%></li>
+                            <li><%= Html.ActionLink("公司新闻", "Index", "Article", new { TypeID = Nepton.Controllers.HomeController.NewsId },null)%></li>
+                            <li><%= Html.ActionLink("公司视频", "Index", "Article", new { TypeID = Nepton.Controllers.HomeController.VideoId }, null)%></li>
                             <li><%= Html.ActionLink("产品中心", "ProductList", "Article")%></li>
-                            <li><%= Html.ActionLink("招商加盟", "Edit", "Article", new { TypeID = "9b647655-9c50-4222-b10f-0b7ae2186704",ArticleID="c0815bc2-d461-4f73-93ea-4d6a5c6d94d5" }, null)%></li>
-                            <li><%= Html.ActionLink("美酒文化", "Edit", "Article", new { TypeID = "9b647655-9c50-4222-b10f-0b7ae2186705" ,ArticleID="39be8736-cbc0-4894-b75f-687e4c48a94d"}, null)%></li>
+                            <li><%= Html.ActionLink("招商加盟", "Edit", "Article", new { TypeID = Nepton.Controllers.HomeController.JoinUsArticleId,ArticleID="c0815bc2-d461-4f73-93ea-4d6a5c6d94d5" }, null)%></li>
+                            <li><%= Html.ActionLink("美酒文化", "Edit", "Article", new { TypeID = Nepton.Controllers.HomeController.CultureArticleId ,ArticleID="39be8736-cbc0-4894-b75f-687e4c48a94d"}, null)%></li>
                             <li><%= Html.ActionLink("联系我们", "Index", "Contact")%></li>
-                            <li><%= Html.ActionLink("公司简介", "Edit", "Article", new { TypeID = "9b647655-9c50-4222-b10f-0b7ae2186706", ArticleID = "b421878f-fe03-4048-b8eb-01d3cc12b3fd" }, null)%></li>
+                            <li><%= Html.ActionLink("公司简介", "Edit", "Article", new { TypeID =Nepton.Controllers.HomeController.CompanyArticleId, ArticleID = "b421878f-fe03-4048-b8eb-01d3cc12b3fd" }, null)%></li>
+                            <li><%= Html.ActionLink("公告板/专栏", "Index", "Article", new { TypeID = Nepton.Controllers.HomeController.BBS },null)%></li>
+
+                            <li><%= Html.ActionLink("商务宴请", "Index", "Article", new { TypeID = Nepton.Controllers.HomeController.BusinessId }, null)%></li>
+                            <li><%= Html.ActionLink("婚宴推荐", "Index", "Article", new { TypeID = Nepton.Controllers.HomeController.WeddingId }, null)%></li>
+
+
                         </ul>
                         <ul class="hide system">
                             <li><%= Html.ActionLink("修改登录密码", "ChangePassword", "Account")%></li>

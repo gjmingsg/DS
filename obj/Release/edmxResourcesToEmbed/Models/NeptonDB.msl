@@ -58,5 +58,15 @@
       </EndProperty>
       <Condition ColumnName="TypeID" IsNull="false" />
     </AssociationSetMapping>
+    <EntitySetMapping Name="NT_ProductPic">
+      <EntityTypeMapping TypeName="NeptonDBModel.NT_ProductPic">
+        <MappingFragment StoreEntitySet="NT_ProductPic">
+          <ScalarProperty Name="Memo" ColumnName="Memo" />
+          <ScalarProperty Name="Url" ColumnName="Url" />
+          <ScalarProperty Name="ArticleID" ColumnName="ArticleID" />
+          <ScalarProperty Name="PicID" ColumnName="PicID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

@@ -19,6 +19,7 @@ using System.Runtime.Serialization;
 #region EDM 关系源元数据
 
 [assembly: EdmRelationshipAttribute("NeptonDBModel", "FK_NT_ARTIC_REFERENCE_NT_ARTIC", "NT_ArticleType", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Nepton.Models.NT_ArticleType), "NT_Article", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Nepton.Models.NT_Article))]
+[assembly: EdmRelationshipAttribute("NeptonDBModel", "FK_NT_PRODU_REFERENCE_NT_ARTIC", "NT_Article", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Nepton.Models.NT_Article), "NT_ProductPic", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Nepton.Models.NT_ProductPic), true)]
 
 #endregion
 
@@ -130,6 +131,22 @@ namespace Nepton.Models
             }
         }
         private ObjectSet<NT_Contact> _NT_Contact;
+    
+        /// <summary>
+        /// 没有元数据文档可用。
+        /// </summary>
+        public ObjectSet<NT_ProductPic> NT_ProductPic
+        {
+            get
+            {
+                if ((_NT_ProductPic == null))
+                {
+                    _NT_ProductPic = base.CreateObjectSet<NT_ProductPic>("NT_ProductPic");
+                }
+                return _NT_ProductPic;
+            }
+        }
+        private ObjectSet<NT_ProductPic> _NT_ProductPic;
 
         #endregion
         #region AddTo 方法
@@ -164,6 +181,14 @@ namespace Nepton.Models
         public void AddToNT_Contact(NT_Contact nT_Contact)
         {
             base.AddObject("NT_Contact", nT_Contact);
+        }
+    
+        /// <summary>
+        /// 用于向 NT_ProductPic EntitySet 添加新对象的方法，已弃用。请考虑改用关联的 ObjectSet&lt;T&gt; 属性的 .Add 方法。
+        /// </summary>
+        public void AddToNT_ProductPic(NT_ProductPic nT_ProductPic)
+        {
+            base.AddObject("NT_ProductPic", nT_ProductPic);
         }
 
         #endregion
@@ -383,6 +408,28 @@ namespace Nepton.Models
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<NT_ArticleType>("NeptonDBModel.FK_NT_ARTIC_REFERENCE_NT_ARTIC", "NT_ArticleType", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// 没有元数据文档可用。
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("NeptonDBModel", "FK_NT_PRODU_REFERENCE_NT_ARTIC", "NT_ProductPic")]
+        public EntityCollection<NT_ProductPic> NT_ProductPic
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<NT_ProductPic>("NeptonDBModel.FK_NT_PRODU_REFERENCE_NT_ARTIC", "NT_ProductPic");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<NT_ProductPic>("NeptonDBModel.FK_NT_PRODU_REFERENCE_NT_ARTIC", "NT_ProductPic", value);
                 }
             }
         }
@@ -938,6 +985,174 @@ namespace Nepton.Models
 
         #endregion
     
+    }
+    
+    /// <summary>
+    /// 没有元数据文档可用。
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="NeptonDBModel", Name="NT_ProductPic")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class NT_ProductPic : EntityObject
+    {
+        #region 工厂方法
+    
+        /// <summary>
+        /// 创建新的 NT_ProductPic 对象。
+        /// </summary>
+        /// <param name="picID">PicID 属性的初始值。</param>
+        public static NT_ProductPic CreateNT_ProductPic(global::System.Guid picID)
+        {
+            NT_ProductPic nT_ProductPic = new NT_ProductPic();
+            nT_ProductPic.PicID = picID;
+            return nT_ProductPic;
+        }
+
+        #endregion
+        #region 基元属性
+    
+        /// <summary>
+        /// 没有元数据文档可用。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Guid PicID
+        {
+            get
+            {
+                return _PicID;
+            }
+            set
+            {
+                if (_PicID != value)
+                {
+                    OnPicIDChanging(value);
+                    ReportPropertyChanging("PicID");
+                    _PicID = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("PicID");
+                    OnPicIDChanged();
+                }
+            }
+        }
+        private global::System.Guid _PicID;
+        partial void OnPicIDChanging(global::System.Guid value);
+        partial void OnPicIDChanged();
+    
+        /// <summary>
+        /// 没有元数据文档可用。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Guid> ArticleID
+        {
+            get
+            {
+                return _ArticleID;
+            }
+            set
+            {
+                OnArticleIDChanging(value);
+                ReportPropertyChanging("ArticleID");
+                _ArticleID = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ArticleID");
+                OnArticleIDChanged();
+            }
+        }
+        private Nullable<global::System.Guid> _ArticleID;
+        partial void OnArticleIDChanging(Nullable<global::System.Guid> value);
+        partial void OnArticleIDChanged();
+    
+        /// <summary>
+        /// 没有元数据文档可用。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Url
+        {
+            get
+            {
+                return _Url;
+            }
+            set
+            {
+                OnUrlChanging(value);
+                ReportPropertyChanging("Url");
+                _Url = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Url");
+                OnUrlChanged();
+            }
+        }
+        private global::System.String _Url;
+        partial void OnUrlChanging(global::System.String value);
+        partial void OnUrlChanged();
+    
+        /// <summary>
+        /// 没有元数据文档可用。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Memo
+        {
+            get
+            {
+                return _Memo;
+            }
+            set
+            {
+                OnMemoChanging(value);
+                ReportPropertyChanging("Memo");
+                _Memo = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Memo");
+                OnMemoChanged();
+            }
+        }
+        private global::System.String _Memo;
+        partial void OnMemoChanging(global::System.String value);
+        partial void OnMemoChanged();
+
+        #endregion
+    
+        #region 导航属性
+    
+        /// <summary>
+        /// 没有元数据文档可用。
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("NeptonDBModel", "FK_NT_PRODU_REFERENCE_NT_ARTIC", "NT_Article")]
+        public NT_Article NT_Article
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<NT_Article>("NeptonDBModel.FK_NT_PRODU_REFERENCE_NT_ARTIC", "NT_Article").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<NT_Article>("NeptonDBModel.FK_NT_PRODU_REFERENCE_NT_ARTIC", "NT_Article").Value = value;
+            }
+        }
+        /// <summary>
+        /// 没有元数据文档可用。
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<NT_Article> NT_ArticleReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<NT_Article>("NeptonDBModel.FK_NT_PRODU_REFERENCE_NT_ARTIC", "NT_Article");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<NT_Article>("NeptonDBModel.FK_NT_PRODU_REFERENCE_NT_ARTIC", "NT_Article", value);
+                }
+            }
+        }
+
+        #endregion
     }
 
     #endregion

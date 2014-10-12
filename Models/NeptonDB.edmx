@@ -10,9 +10,14 @@
           <EntitySet Name="NT_ArticleType" EntityType="NeptonDBModel.Store.NT_ArticleType" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="NT_Config" EntityType="NeptonDBModel.Store.NT_Config" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="NT_Contact" EntityType="NeptonDBModel.Store.NT_Contact" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="NT_ProductPic" EntityType="NeptonDBModel.Store.NT_ProductPic" store:Type="Tables" Schema="dbo" />
           <AssociationSet Name="FK_NT_ARTIC_REFERENCE_NT_ARTIC" Association="NeptonDBModel.Store.FK_NT_ARTIC_REFERENCE_NT_ARTIC">
             <End Role="NT_ArticleType" EntitySet="NT_ArticleType" />
             <End Role="NT_Article" EntitySet="NT_Article" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NT_PRODU_REFERENCE_NT_ARTIC" Association="NeptonDBModel.Store.FK_NT_PRODU_REFERENCE_NT_ARTIC">
+            <End Role="NT_Article" EntitySet="NT_Article" />
+            <End Role="NT_ProductPic" EntitySet="NT_ProductPic" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="NT_Article">
@@ -60,6 +65,15 @@
           <Property Name="CreateTime" Type="datetime" />
           <Property Name="Status" Type="nvarchar" MaxLength="10" />
         </EntityType>
+        <EntityType Name="NT_ProductPic">
+          <Key>
+            <PropertyRef Name="PicID" />
+          </Key>
+          <Property Name="PicID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ArticleID" Type="uniqueidentifier" />
+          <Property Name="Url" Type="nvarchar" MaxLength="500" />
+          <Property Name="Memo" Type="text" />
+        </EntityType>
         <Association Name="FK_NT_ARTIC_REFERENCE_NT_ARTIC">
           <End Role="NT_ArticleType" Type="NeptonDBModel.Store.NT_ArticleType" Multiplicity="0..1" />
           <End Role="NT_Article" Type="NeptonDBModel.Store.NT_Article" Multiplicity="*" />
@@ -69,6 +83,18 @@
             </Principal>
             <Dependent Role="NT_Article">
               <PropertyRef Name="TypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NT_PRODU_REFERENCE_NT_ARTIC">
+          <End Role="NT_Article" Type="NeptonDBModel.Store.NT_Article" Multiplicity="0..1" />
+          <End Role="NT_ProductPic" Type="NeptonDBModel.Store.NT_ProductPic" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NT_Article">
+              <PropertyRef Name="ArticleID" />
+            </Principal>
+            <Dependent Role="NT_ProductPic">
+              <PropertyRef Name="ArticleID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -85,6 +111,11 @@
             <End Role="NT_ArticleType" EntitySet="NT_ArticleType" />
             <End Role="NT_Article" EntitySet="NT_Article" />
           </AssociationSet>
+          <EntitySet Name="NT_ProductPic" EntityType="NeptonDBModel.NT_ProductPic" />
+          <AssociationSet Name="FK_NT_PRODU_REFERENCE_NT_ARTIC" Association="NeptonDBModel.FK_NT_PRODU_REFERENCE_NT_ARTIC">
+            <End Role="NT_Article" EntitySet="NT_Article" />
+            <End Role="NT_ProductPic" EntitySet="NT_ProductPic" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="NT_Article">
           <Key>
@@ -97,6 +128,7 @@
           <Property Name="Content" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
           <Property Name="Status" Type="Int32" />
           <NavigationProperty Name="NT_ArticleType" Relationship="NeptonDBModel.FK_NT_ARTIC_REFERENCE_NT_ARTIC" FromRole="NT_Article" ToRole="NT_ArticleType" />
+          <NavigationProperty Name="NT_ProductPic" Relationship="NeptonDBModel.FK_NT_PRODU_REFERENCE_NT_ARTIC" FromRole="NT_Article" ToRole="NT_ProductPic" />
         </EntityType>
         <EntityType Name="NT_ArticleType">
           <Key>
@@ -135,6 +167,28 @@
         <Association Name="FK_NT_ARTIC_REFERENCE_NT_ARTIC">
           <End Role="NT_ArticleType" Type="NeptonDBModel.NT_ArticleType" Multiplicity="0..1" />
           <End Role="NT_Article" Type="NeptonDBModel.NT_Article" Multiplicity="*" />
+        </Association>
+        <EntityType Name="NT_ProductPic">
+          <Key>
+            <PropertyRef Name="PicID" />
+          </Key>
+          <Property Type="Guid" Name="PicID" Nullable="false" />
+          <Property Type="Guid" Name="ArticleID" />
+          <Property Type="String" Name="Url" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Memo" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="NT_Article" Relationship="NeptonDBModel.FK_NT_PRODU_REFERENCE_NT_ARTIC" FromRole="NT_ProductPic" ToRole="NT_Article" />
+        </EntityType>
+        <Association Name="FK_NT_PRODU_REFERENCE_NT_ARTIC">
+          <End Type="NeptonDBModel.NT_Article" Role="NT_Article" Multiplicity="0..1" />
+          <End Type="NeptonDBModel.NT_ProductPic" Role="NT_ProductPic" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NT_Article">
+              <PropertyRef Name="ArticleID" />
+            </Principal>
+            <Dependent Role="NT_ProductPic">
+              <PropertyRef Name="ArticleID" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
       </Schema>
     </edmx:ConceptualModels>
@@ -183,6 +237,16 @@
             </EndProperty>
             <Condition ColumnName="TypeID" IsNull="false" />
           </AssociationSetMapping>
+          <EntitySetMapping Name="NT_ProductPic">
+            <EntityTypeMapping TypeName="NeptonDBModel.NT_ProductPic">
+              <MappingFragment StoreEntitySet="NT_ProductPic">
+                <ScalarProperty Name="Memo" ColumnName="Memo" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
+                <ScalarProperty Name="ArticleID" ColumnName="ArticleID" />
+                <ScalarProperty Name="PicID" ColumnName="PicID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -198,7 +262,7 @@
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="True" />
-        <DesignerProperty Name="IncludeForeignKeysInModel" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
       </DesignerInfoPropertySet>
     </Options>
     <!-- Diagram content (shape and connector positions) -->
@@ -211,6 +275,11 @@
         <AssociationConnector Association="NeptonDBModel.FK_NT_ARTIC_REFERENCE_NT_ARTIC" ManuallyRouted="false">
           <ConnectorPoint PointX="2.25" PointY="2.1395064290364587" />
           <ConnectorPoint PointX="3" PointY="2.1395064290364587" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="NeptonDBModel.NT_ProductPic" Width="1.5" PointX="5.75" PointY="1.25" Height="1.9700325520833335" />
+        <AssociationConnector Association="NeptonDBModel.FK_NT_PRODU_REFERENCE_NT_ARTIC" >
+          <ConnectorPoint PointX="4.5" PointY="2.2350162760416667" />
+          <ConnectorPoint PointX="5.75" PointY="2.2350162760416667" />
         </AssociationConnector>
       </Diagram>
     </Diagrams>

@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using MvcPaging;
 using Nepton.Models;
+using System.Text.RegularExpressions;
 namespace Nepton.Controllers
 {
     public class ArticleController : Controller
@@ -13,6 +14,7 @@ namespace Nepton.Controllers
         // GET: /Article/
         private readonly IArticleRepository db = new ArticleRepository();
         private readonly IArticleTypeRepository typeDb = new ArticleTypeRepository();
+        private readonly IProductPicRepository prodDb = new ProductPicRepository();
         private static readonly log4net.ILog log = log4net.LogManager.GetLogger(typeof(ArticleController)); 
         [Authorize]
         public ActionResult Index(int? page, Guid? TypeID)
@@ -160,6 +162,9 @@ namespace Nepton.Controllers
         [HttpGet]
         public ActionResult ProductDelete(Guid ArticleID)
         {
+            var delimg = prodDb.FindAll().Where(p => p.NT_Article.ArticleID == ArticleID).ToList();
+            foreach (var img in delimg)
+                prodDb.DeleteProductPic(img.PicID);
             db.DeleteArticle(ArticleID);
             return RedirectToAction("ProductList");
         }
@@ -200,6 +205,9 @@ namespace Nepton.Controllers
                     item.NT_ArticleType = db.GetArticleType(TypeID);
                     db.AddArticle(item);
 
+                    var imglist = GetHtmlImageUrlList(item.Content);
+                    foreach(var img in imglist)
+                        prodDb.AddProductPic(new NT_ProductPic() { ArticleID=item.ArticleID, Url= img});
                 }
                 return RedirectToAction("ProductList");
             }
@@ -258,6 +266,14 @@ namespace Nepton.Controllers
                 t.Title = item.Title;
                 t.NT_ArticleType = db.GetArticleType(TypeID);
                 db.SaveChange();
+
+                var delimg = prodDb.FindAll().Where(p => p.NT_Article.ArticleID == item.ArticleID).ToList();
+                foreach(var img in delimg)
+                    prodDb.DeleteProductPic(img.PicID);
+                var imglist = GetHtmlImageUrlList(item.Content);
+                foreach (var img in imglist)
+                    prodDb.AddProductPic(new NT_ProductPic() { ArticleID = item.ArticleID, Url = img });
+                
                 return RedirectToAction("ProductList");
             }
             catch
@@ -266,7 +282,26 @@ namespace Nepton.Controllers
             }
         }
 
-        
+        /// <summary> 
+        /// 取得HTML中所有图片的 URL。 
+        /// </summary> 
+        /// <param name="sHtmlText">HTML代码</param> 
+        /// <returns>图片的URL列表</returns> 
+        private  string[] GetHtmlImageUrlList(string sHtmlText)
+        {
+            // 定义正则表达式用来匹配 img 标签 
+            Regex regImg = new Regex(@"<img\b[^<>]*?\bsrc[\s\t\r\n]*=[\s\t\r\n]*[""']?[\s\t\r\n]*(?<imgUrl>[^\s\t\r\n""'<>]*)[^<>]*?/?[\s\t\r\n]*>", RegexOptions.IgnoreCase);
+
+            // 搜索匹配的字符串 
+            MatchCollection matches = regImg.Matches(sHtmlText);
+            int i = 0;
+            string[] sUrlList = new string[matches.Count];
+
+            // 取得匹配项列表 
+            foreach (Match match in matches)
+                sUrlList[i++] = match.Groups["imgUrl"].Value;
+            return sUrlList;
+        }
 
     }
 }

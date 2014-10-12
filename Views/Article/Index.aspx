@@ -18,10 +18,10 @@ Inherits="System.Web.Mvc.ViewPage<MvcPaging.IPagedList<Nepton.Models.NT_Article>
             <th>
                 发布时间
             </th>
-            <th>
+            <%-- <th>
             内容
             </th>
-         <%--   <th>
+           <th>
                 发布状态
             </th>--%>
         </tr>
@@ -41,10 +41,10 @@ Inherits="System.Web.Mvc.ViewPage<MvcPaging.IPagedList<Nepton.Models.NT_Article>
             <td>
                 <%= Html.Encode(String.Format("{0:g}", item.CreateTime)) %>
             </td>
-            <td>
+           <%--  <td>
                 <%= Html.Encode(item.Content) %>
             </td>
-           <%-- <td>
+           <td>
                 <%= Html.Encode(item.Status) %>
             </td>--%>
         </tr>

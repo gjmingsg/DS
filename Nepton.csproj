@@ -14,7 +14,7 @@
     <AssemblyName>Nepton</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
-    <UseIISExpress>false</UseIISExpress>
+    <UseIISExpress>true</UseIISExpress>
     <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -114,6 +114,7 @@
     <Compile Include="Models\IArticleTypeRepository.cs" />
     <Compile Include="Models\IConfigRepository.cs" />
     <Compile Include="Models\IContactRepository.cs" />
+    <Compile Include="Models\IProductPicRepository.cs" />
     <Compile Include="Models\NeptonDB.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -122,6 +123,7 @@
     <Compile Include="Models\NT_Article.cs" />
     <Compile Include="Models\NT_Config.cs" />
     <Compile Include="Models\NT_Contact.cs" />
+    <Compile Include="Models\ProductPicRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -375,6 +377,7 @@
     <Content Include="Images\bg_btn3.gif" />
     <Content Include="Images\bg_btn4.gif" />
     <Content Include="Images\bg_tabArea.gif" />
+    <Content Include="Images\bottom_line.jpg" />
     <Content Include="Images\bottom_line.png" />
     <Content Include="Images\btn_detail.gif" />
     <Content Include="Images\btn_report.gif" />
@@ -430,17 +433,21 @@
     <Content Include="Images\join_current.jpg" />
     <Content Include="Images\join_title.jpg" />
     <Content Include="Images\leftnav.jpg" />
-    <Content Include="Images\left_bottom_line.jpg" />
-    <Content Include="Images\left_top_line.jpg" />
     <Content Include="Images\loading.gif" />
     <Content Include="Images\Logo.jpg" />
     <Content Include="Images\logo2.jpg" />
     <Content Include="Images\logo_detail.jpg" />
+    <Content Include="Images\mail-icon.png" />
     <Content Include="Images\menu1.png" />
     <Content Include="Images\menu2.png" />
+    <Content Include="Images\menu_bg.jpg" />
     <Content Include="Images\more.jpg" />
     <Content Include="Images\NewsTitle.jpg" />
     <Content Include="Images\news_title.jpg" />
+    <Content Include="Images\Occastion.jpg" />
+    <Content Include="Images\Occastion_index_selected.jpg" />
+    <Content Include="Images\Occastion_pic.jpg" />
+    <Content Include="Images\Occastion_title.jpg" />
     <Content Include="Images\product.jpg" />
     <Content Include="Images\ProductDetail_pic.jpg" />
     <Content Include="Images\productlist_pic.jpg" />
@@ -453,11 +460,11 @@
     <Content Include="Images\product_submenu.jpg" />
     <Content Include="Images\product_current.jpg" />
     <Content Include="Images\product_tip.jpg" />
+    <Content Include="Images\Recommend_Link.jpg" />
     <Content Include="Images\red.jpg" />
     <Content Include="Images\rightnav.jpg" />
-    <Content Include="Images\right_bottom_line.jpg" />
-    <Content Include="Images\right_top_line.jpg" />
     <Content Include="Images\title-line-bar.jpg" />
+    <Content Include="Images\top_line.jpg" />
     <Content Include="Images\tree_dnd_yes.png" />
     <Content Include="Images\videobar.jpg" />
     <Content Include="Images\video_pic.jpg" />
@@ -485,6 +492,7 @@
     <Content Include="Views\Config\Index.aspx" />
     <Content Include="Views\Contact\Details.aspx" />
     <Content Include="Views\Contact\Index.aspx" />
+    <Content Include="Views\Home\Business.aspx" />
     <Content Include="Views\Home\Company.aspx" />
     <Content Include="Views\Home\Contact.aspx" />
     <Content Include="Views\Home\ContactMsg.aspx" />
@@ -493,9 +501,12 @@
     <Content Include="Views\Home\Join.aspx" />
     <Content Include="Views\Home\News.aspx" />
     <Content Include="Views\Home\NewsMore.aspx" />
+    <Content Include="Views\Home\Occastion.aspx" />
+    <Content Include="Views\Home\OccastionDetail.aspx" />
     <Content Include="Views\Home\ProductDetail.aspx" />
     <Content Include="Views\Home\ProductList.aspx" />
     <Content Include="Views\Home\Video.aspx" />
+    <Content Include="Views\Home\Wedding.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -582,12 +593,11 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>False</UseIIS>
+          <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>42719</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>
-          </IISUrl>
+          <IISUrl>http://localhost:42719/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

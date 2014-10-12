@@ -1,46 +1,64 @@
 ﻿<%@ Page Language="C#" Inherits="System.Web.Mvc.ViewPage" %>
-
-
 <!doctype html>
 <html>
 <head>
 <meta charset="utf-8" />
 <meta name="renderer" content="webkit" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<meta name="keywords" content='' />
-<meta name="description" content='' />
+<meta name="keywords" content='广州市涅普敦进出口贸易有限公司,美酒' />
+<meta name="description" content='广州市涅普敦进出口贸易有限公司,美酒' />
 <title>广州市涅普敦进出口贸易有限公司</title>
-<link rel='' href="../../Images/logoico.png"  type="image/x-icon" />
+<%--<link rel='' href="../../Images/logoico.png"  type="image/x-icon" />--%>
 <link rel="stylesheet" href="../../content/reset.css" />
 <link rel="stylesheet" href="../../content/main.css" />
 </head>
 <body class="bg">
  <div class="header">
-	<div class="head-nav m">
-        <div style="position:absolute;left:50%;margin-left:-59px;z-index:20"><img src="../../images/logo.jpg"/></div>
-        <img src="../../images/left_top_line.jpg" style="margin-top:35px"/>
-        <img src="../../images/right_top_line.jpg" style="margin-left:110px;margin-top:35px" />
+	<div class="head-nav m"  style="margin-top:35px">
+        
+        
     	 <ul class="clearfix">
     	    <li class="nav-img"><img src="../../images/leftnav.jpg" alt=""/></li>
-    	 	<li class="nav-img"><a href="/home/index"><img src="../../images/Home.jpg" alt="首页" /></a></li>
+    	 	<li class="nav-img"><a href='<%=Url.Action("index","home")%>'><img src="../../images/Home.jpg" alt="首页" /></a></li>
     	 	<li class="nav-img"><img src="../../images/gap.jpg"  alt=""/></li>
-    	 	<li class="nav-img"><a href="/home/company"><img src="../../images/company.jpg" alt="涅普敦" /></a></li>
+    	 	<li class="nav-img"><a href='<%=Url.Action("company","home")%>'><img src="../../images/company.jpg" alt="涅普敦" /></a></li>
     	 	<li class="nav-img"><img src="../../images/gap.jpg" alt=""/></li>
-    	 	<li class="nav-img"><a href="/home/productlist"><img src="../../images/Product.jpg" alt="产品中心" /></a></li>
-    	 	<li><div style="width:117px"></div></li>
-    	 	<li class="nav-img"><a href="/home/join"><img src="../../images/Join.jpg" alt="招商加盟" /></a></li>
+    	 	<li class="nav-img sec-menu" >
+                <a href='<%=Url.Action("Occastion","home") %>'>
+                    <img src="../../images/Occastion.jpg" alt="场合选酒" />
+                </a>
+                
+                <div class="list">
+		            <a href="<%=Url.Action("Occastion","home",new {TypeID=Nepton.Controllers.HomeController.WeddingId})%>">婚宴推荐</a><br />
+                    <hr />
+                    <a href="<%=Url.Action("Occastion","home",new {TypeID=Nepton.Controllers.HomeController.BusinessId})%>">商务宴请</a><br />
+	            </div>
+
+            </li>
     	 	<li class="nav-img"><img src="../../images/gap.jpg" alt=""/></li>
-    	 	<li class="nav-img"><a href="/home/culture"><img src="../../images/Culture.jpg" alt="美酒文化" /></a></li>
+            <li class="nav-img sec-menu">
+                <a href='<%=Url.Action("ProductList","home") %>'>
+                    <img src="../../images/Product.jpg" alt="产品中心" />
+                </a>
+                <div class="list">
+		            <a href="<%=Url.Action("ProductList","home",new {BigTypeID=Nepton.Controllers.HomeController.RedId})%>">红酒</a><br />
+                    <hr />
+                    <a href="<%=Url.Action("ProductList","home",new {BigTypeID=Nepton.Controllers.HomeController.WhiteId})%>">白兰地</a><br />
+	            </div>
+            </li>
+            <li class="nav-img"><img src="../../images/gap.jpg" alt=""/></li>
+            <li class="nav-img"><a href='<%=Url.Action("join","home")%>'><img src="../../images/Join.jpg" alt="招商加盟" /></a></li>
     	 	<li class="nav-img"><img src="../../images/gap.jpg" alt=""/></li>
-    	 	<li class="nav-img"><a href="/Home/Contact"><img src="../../images/Contact.jpg" alt="联系我们" /></a></li>
+    	 	<li class="nav-img"><a href='<%=Url.Action("culture","home")%>'><img src="../../images/Culture.jpg" alt="美酒文化" /></a></li>
+    	 	<li class="nav-img"><img src="../../images/gap.jpg" alt=""/></li>
+    	 	<li class="nav-img"><a href='<%=Url.Action("Contact","home")%>'><img src="../../images/Contact.jpg" alt="联系我们" /></a></li>
        		<li class="nav-img"><img src="../../images/rightnav.jpg" alt=""/></li>
     	 </ul>
-         <img src="../../images/left_bottom_line.jpg"  alt=""/>
-         <img src="../../images/right_bottom_line.jpg" style="margin-left:110px;"  alt=""/>
+          
     </div>
  </div>
  <div class="sub-header"></div>
-    <div class="content" style="margin-top:30px">
+    <div class="content" style="margin-top:130px">
  	<div class="menu lfloat">
  		<div class="submenu">
             <div class="menu1">
@@ -55,7 +73,7 @@
         </div>
  		<div class="submenu">
             <div class="menu2">
-              <%--  <img src="../../images/contact_detail.jpg" class="pic1"/>--%>
+      
               <img src="../../Images/contact_tip.jpg" class="pic1" alt="联系我们"/>
               <div class="contact-txt">
                   <div><%=ViewData["Address"] %></div>
@@ -66,11 +84,21 @@
         </div>
         <div class="friendlink">
             <div>
-                <img src="../../images/friend_line.jpg" alt="友情链接"/>
+                <img src="../../images/Recommend_Link.jpg" alt="本月推荐"/>
+                 <a href="<%=Url.Action("NewsMore","home",new {TypeID=Nepton.Controllers.HomeController.BBS}) %>"  class="rfloat" style="margin-top:15px;">
+                   more>>
+                 </a>
             </div>
-            <div>
-            <%=Html.DropDownList("Link")%>
+            <%
+                var bbs = ViewData["BBS"] as List<Nepton.Models.NT_Article>;
+                foreach (var item in bbs)
+                {  %>
+                
+            <div >
+             <a  href='<%=Url.Action("news","home",new {id=item.ArticleID} ) %>'><%=item.Title %></a>
             </div>
+            <% }%>
+            
         </div>
  	</div>
  	<div class="main lfloat">
@@ -186,6 +214,20 @@
                 $(this).attr('src', src.replace('_selected.jpg', '.jpg'));
             });
         });
+
+        $('.sec-menu').mouseover(
+            function () {
+                var _list = $(this).find('.list');
+                _list.show();
+                setTimeout(function () { _list.hide(); }, 1000 * 5);
+            }
+         ).find('.list').mouseout(
+            function () {
+                $(this).hide();
+            }
+         );
+
+
     });
 </script>
 
